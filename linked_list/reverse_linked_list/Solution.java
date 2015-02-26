@@ -29,21 +29,32 @@ class Solution{
 	head1=LinkedList.push(head1,new Node(1));
 	
 	head2=new Node(130);
-	head1=LinkedList.push(head1,new Node(120));
-	head1=LinkedList.push(head1,new Node(100));
-	head1=LinkedList.push(head1,new Node(90));
-	head1=LinkedList.push(head1,new Node(32));
-	head1=LinkedList.push(head1,new Node(12));
-	head1=LinkedList.push(head1,new Node(3));
-	head1=LinkedList.push(head1,new Node(0));
+	head2=LinkedList.push(head2,new Node(120));
+	head2=LinkedList.push(head2,new Node(100));
+	head2=LinkedList.push(head2,new Node(90));
+	head2=LinkedList.push(head2,new Node(32));
+	head2=LinkedList.push(head2,new Node(12));
+	head2=LinkedList.push(head2,new Node(3));
+	head2=LinkedList.push(head2,new Node(0));
 
+	print(head1);
+	System.out.println();
+	print(head2);
+	System.out.println();
 	solve(head1,head2);
 
+    }
+
+    static void print(Node h1){
+	while(h1!=null){
+	    System.out.print(h1.getData()+" ");
+	    h1=h1.getNext();
+	}
     }
     
     static void solve(Node h1,Node h2){
 	Node t1=h1,t2=h2;
-	Node res;
+	Node res=null;
 	int sum1=0,sum2=0;
 	while(h1!=null || h2!=null){
 	    sum1=sum2=0;
@@ -58,10 +69,14 @@ class Solution{
 		}
 	    }
 	    //h1 or h2 vould be null or h1.d==h2.d
-	    if(h1.getData()!=h2.getData()){	    
+	    if(h1==null || h2==null){	    
 		while(h1!=null){
 		    sum1+=h1.getData();
 		    h1=h1.getNext();
+		}
+		while(h2!=null){
+		    sum2+=h2.getData();
+		    h2=h2.getNext();
 		}
 	    }
 	    if(res==null){
@@ -80,12 +95,27 @@ class Solution{
 		else
 		    t1.setNext(t2.getNext());
 	    }
-	    t1=h1;t2=h2;
-	    
-
-
+	    if(h1!=null){
+		t1=h1;
+		h1=h1.getNext();
+	
+	    }
+	    if(h2!=null){
+		t2=h2;
+		h2=h2.getNext();
+	    System.out.println(h2.getData());		
+	    }
 
 	}
+	System.out.println(h1+" "+h2);
+	if(h1!=null){
+	    t2.setNext(h1);
+	}
+	else{
+	    t1.setNext(h2);
+	}
+	print(res);
+	
     }
 
 
