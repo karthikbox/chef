@@ -1,0 +1,85 @@
+Static final variables have to be initialized in a class. The initialization can be done though a static block.
+class Test{
+    //static final int i; //unitinitalize variable i will give CE when trying to print i
+    static final int i=100; //ok ,,initialization
+
+    static{
+	//i=100;//not ok since, final var i was already initialized.
+	//can initalize final cars in static block
+	
+    }
+
+    /* this works too
+       static final int i;
+       static{
+             i=100;
+       }
+    */
+
+    Test(){
+	//i=100; conot assign vlue to final variable i
+	//cannot initalzize final vars in constructor
+    }
+
+    public static void main(String[] s){
+	//i=100;//cannot initialize final ars in methods
+	System.out.println(i);
+    }
+}
+
+
+###########################################
+Superclass variable(SuperO) refers a subclass object and the suclass has overriden a method of superclass, then when SuperO.overridenMethod() will call overriden method of subclass. If the subclass had not overriden super class, then SuperO,overridenMethod() will call superclass method. For overriding, fnction name, return type and parameter must be same.
+
+For overloading, function name has to be same and thats it. function ordering and type must be different. Return types do not count,.ie functions with same arguments and different return types do not count as overloaded or as overriden. 
+
+Subclass inherits supers() methods. If subclass can overload it's supers methods, but then compile time polymorphism. For overloading, parmaters must be diff, return type doesnot matter. By keeping the same paramter list, we are ruling out overloading, only poosibility is overriding, then return type must be same for child's ethod, if return type is ifferent then error "cannot override", if successful then run time polymorphism.
+
+class Test{
+
+    int i;
+    void t(){
+	System.out.println("Test");
+    }
+}
+
+class Test1 extends Test{
+    void t(){
+	System.out.println("Test1");
+    }
+
+
+}
+
+
+class Test2 extends Test{
+    void t(){
+	System.out.println("Test2");
+    }
+
+
+}
+
+
+class Test21 extends Test1{
+    void t(int a){
+	System.out.println("Test21");
+    }
+
+
+}
+
+
+class Real{
+    public static void main(String[] s){
+	Test t=new Test();
+	Test1 t1=new Test1();
+	Test2 t2=new Test2();
+	Test21 t21=new Test21();
+	Test1 r=t21;
+	r.t();//prints "Test1", since t() was not overriden
+	r=t2
+    }
+}
+
+################################################
